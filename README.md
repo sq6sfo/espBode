@@ -10,3 +10,6 @@ Currently implemented features:
 TODO:
  - rewrite whole thing to C++, so adding new AWGs would be easier
  - add possibility to configure SSID/PSK + IP without flashing the new SW
+
+
+![image test](img/connection.png)
