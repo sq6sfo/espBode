@@ -3,6 +3,7 @@
 
 volatile char *gReadBuffer = NULL;
 
+/* Function parses number from the msg string expects natural a number. */
 static uint32_t parseNumber(char *msg)
 {
     uint32_t number = 0;
@@ -15,11 +16,22 @@ static uint32_t parseNumber(char *msg)
     return number;
 }
 
-static uint32_t parseDecimal(char *msg)
+/* Similar to parseNumber, but handles also decimal '.' and '-' sign.0
+Return value is multiplied *1000 to include the decimal part:
+    123.345 -> 123456
+    -1.2    ->  -1200 */
+static int32_t parseDecimal(char *msg)
 {
     uint8_t dot = 0;
-    uint32_t multiplier = 1000;
-    uint32_t number = 0;
+    int32_t multiplier = 1000;
+    int32_t number = 0;
+
+    if(msg[0] == '-')
+    {
+        multiplier*=-1;
+        msg++;
+    }
+
     while((0<=(msg[0]-'0') && (msg[0]-'0')<=9) || msg[0] == '.')
     {
         if(msg[0] == '.')
