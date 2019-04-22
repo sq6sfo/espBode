@@ -25,7 +25,7 @@ void setup() {
     WiFi.mode(WIFI_STA);
     WiFi.begin(WIFI_SSID, WIFI_PSK);
 #elif defined(WIFI_MODE_AP)
-    Wifi.softAp(WIFI_SSID, WIFI_PSK);
+    WiFi.softAP(WIFI_SSID, WIFI_PSK);
 #else
     #error PLEASE SELECT WIFI_MODE_AP OR WIFI_MODE_CLIENT!
 #endif
