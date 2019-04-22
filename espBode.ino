@@ -42,8 +42,6 @@ void setup() {
     rpc_server.begin();
     lxi_server.begin();
 }
-uint8_t output = 0;
-
 
 void loop() {
     WiFiClient rpc_client;
