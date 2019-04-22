@@ -3,26 +3,32 @@
 #include "esp_config.h"
 #include "esp_fy6800.h"
 
-const char * ssid = STASSID; // your network SSID (name)
-const char * pass = STAPSK;  // your network password
-
 WiFiServer rpc_server(RPC_PORT);
 WiFiServer lxi_server(LXI_PORT);
 
 void setup() {
-    IPAddress ip(192,168,1,6);
-    IPAddress gateway(192,168,1,1);
-    IPAddress subnet(255,255,255,0);
 
     Serial.begin(115200);
 
     // We start by connecting to a WiFi network
     DEBUG("Connecting to ");
-    DEBUG(ssid);
-    WiFi.mode(WIFI_STA);
-    WiFi.config(ip, gateway, subnet);
+    DEBUG(WIFI_SSID);
 
-    WiFi.begin(ssid, pass);
+#if defined(STATIC_IP)
+    IPAddress ip(ESP_IP);
+    IPAddress mask(ESP_MASK);
+    IPAddress gateway(ESP_GW);
+    WiFi.config(ip, gateway, mask);
+#endif
+
+#if defined(WIFI_MODE_CLIENT)
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(WIFI_SSID, WIFI_PSK);
+#elif defined(WIFI_MODE_AP)
+    Wifi.softAp(WIFI_SSID, WIFI_PSK);
+#else
+    #error PLEASE SELECT WIFI_MODE_AP OR WIFI_MODE_CLIENT!
+#endif
 
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
@@ -35,15 +41,6 @@ void setup() {
 
     rpc_server.begin();
     lxi_server.begin();
-
-    // initDevice();
-
-
-    // IPAddress debug_ip(192,168,1,112);
-    // debug_client.connect(debug_ip, 123);
-
-    // while(!debug_client.availableForWrite());
-    // debug_client.write((uint8_t*)"KACZKA", 6);
 }
 uint8_t output = 0;
 

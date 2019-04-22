@@ -114,7 +114,7 @@ void setCh2Phase(uint32_t phase)
 void setCh1Offset(uint32_t offset)
 {
     char command[] = "WMO00.000\n";
-    snprintf(command, 11, "WMO%02u.%03u\n", offset/1000, offset%1000);
+    snprintf(command, 11, "WMO%02d.%03u\n", offset/1000, offset%1000);
     gDeviceState.ch1Offset = offset;
     fy6800_write(command, 10);
 }
@@ -122,7 +122,7 @@ void setCh1Offset(uint32_t offset)
 void setCh2Offset(uint32_t offset)
 {
     char command[] = "WFO00.000\n";
-    snprintf(command, 11, "WFO%02u.%03u\n", offset/1000, offset%1000);
+    snprintf(command, 11, "WFO%02d.%03u\n", offset/1000, offset%1000);
     gDeviceState.ch2Offset = offset;
     fy6800_write(command, 10);
 }

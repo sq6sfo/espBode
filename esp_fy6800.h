@@ -85,6 +85,7 @@ void setCh2Phase(uint32_t phase);
 void setCh1Offset(uint32_t offset);
 void setCh2Offset(uint32_t offset);
 
+/* Can be used to set some default parameters */
 void initDevice(void);
 
 #endif _ESP_FY6800_H_
