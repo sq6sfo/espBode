@@ -11,6 +11,6 @@ TODO:
  - rewrite whole thing to C++, so adding new AWGs would be easier
  - add possibility to configure SSID/PSK + IP without flashing the new SW
 
-!WARNING! FY6800 VCC level is 5V, so it has to be dropped somehow to 3.3V ESP may release the magic smoke otherwise.
+**!WARNING! FY6800 VCC level is 5V, so it has to be dropped somehow to 3.3V ESP may release the magic smoke otherwise.**
 
 ![image test](img/connection.png)
