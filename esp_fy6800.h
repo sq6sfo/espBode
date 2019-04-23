@@ -82,8 +82,8 @@ void setCh1Phase(uint32_t phase);
 void setCh2Phase(uint32_t phase);
 
 /* Offset is in mV: 12.345V = 12345 */
-void setCh1Offset(uint32_t offset);
-void setCh2Offset(uint32_t offset);
+void setCh1Offset(int32_t offset);
+void setCh2Offset(int32_t offset);
 
 /* Can be used to set some default parameters */
 void initDevice(void);
