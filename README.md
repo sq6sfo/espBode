@@ -14,3 +14,8 @@ TODO:
 **!WARNING! FY6800 VCC level is 5V, so it has to be dropped somehow to 3.3V ESP may release the magic smoke otherwise.**
 
 ![image test](img/connection.png)
+
+In my configuration I've just used a yellow LED, that dropped the voltage by ~2V.
+ESP consumes about 70mA, that's probably too much for a LED, but maybe it'll survive.
+
+![image LED](img/espLed.jpg)
