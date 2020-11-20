@@ -12,6 +12,7 @@ bool fy6900_write(char* data, uint8_t len)
 {
     uint32_t timeout = 0;
     Serial.write((uint8_t*)data, len);
+    telnet.println("[");
     telnet.print(data);
     telnet.println("]");
     while(!Serial.available())
