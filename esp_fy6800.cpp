@@ -105,7 +105,7 @@ void setCh1Phase(uint32_t phase)
 
 void setCh2Phase(uint32_t phase)
 {
-    char command[] = "WFA00.000\n";
+    char command[] = "WFP00.000\n";
     snprintf(command, 11, "WFP%02u.%01u\n", phase/1000, (phase%1000)/100);
     gDeviceState.ch2Phase = phase;
     fy6800_write(command, 10);
