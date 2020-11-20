@@ -1,3 +1,5 @@
+#if AWG == FY6900
+
 #ifndef _ESP_FY6900_H_
 #define _ESP_FY6900_H_
 
@@ -7,7 +9,7 @@ typedef enum
 {
     EWaveType_Sine          = 0,
     EWaveType_Square        = 1,
-	EWaveType_Rectangle     = 2,
+	  EWaveType_Rectangle     = 2,
     EWaveType_Trapezoid     = 3,
     EWaveType_CMOS          = 4,
     EWaveType_AdjPulse      = 5,
@@ -90,4 +92,6 @@ void setCh2Offset(int32_t offset);
 /* Can be used to set some default parameters */
 void initDevice(void);
 
-#endif _ESP_FY6900_H_
+#endif //_ESP_FY6900_H_
+
+#endif

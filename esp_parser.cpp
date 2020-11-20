@@ -1,5 +1,10 @@
 #include "esp_parser.h"
-#include "esp_fy6800.h"
+
+#if AWG == FY6800
+  #include "esp_fy6800.h"
+#elif AWG == FY6900
+  #include "esp_fy6900.h"
+#endif
 
 volatile char *gReadBuffer = NULL;
 

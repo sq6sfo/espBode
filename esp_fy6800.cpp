@@ -1,5 +1,10 @@
-#include "esp_fy6800.h"
+#include "esp_config.h"
 #include <string.h>
+
+#if AWG == FY6800
+#warning Compiling for FY6800
+
+#include "esp_fy6800.h"
 
 volatile SDeviceState gDeviceState;
 
@@ -36,12 +41,12 @@ void setCh1Output(uint32_t output)
     if(output)
     {
         gDeviceState.ch1Output = 1;
-        fy6800_write("WMN1\n", 5);
+        fy6800_write((char*)"WMN1\n", 5);
     }
     else
     {
         gDeviceState.ch1Output = 0;
-        fy6800_write("WMN0\n", 5);
+        fy6800_write((char*)"WMN0\n", 5);
     }
 }
 
@@ -50,12 +55,12 @@ void setCh2Output(uint32_t output)
     if(output)
     {
         gDeviceState.ch2Output = 1;
-        fy6800_write("WFN1\n", 5);
+        fy6800_write((char*)"WFN1\n", 5);
     }
     else
     {
         gDeviceState.ch2Output = 0;
-        fy6800_write("WFN0\n", 5);
+        fy6800_write((char*)"WFN0\n", 5);
     }
 }
 
@@ -160,3 +165,5 @@ void initDevice(void)
     setCh2Offset(0);
 
 }
+
+#endif

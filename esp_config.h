@@ -1,6 +1,12 @@
 #ifndef _ESP_CONFIG_H_
 #define _ESP_CONFIG_H_
 
+#define FY6800 1
+#define FY6900 2
+
+/* Select the FY6900 or FY6800 AWG*/
+#define AWG FY6900
+
 /* Select either AP or CLIENT mode:
     - AP - creates new network that oscilloscope can connect to
     - CLIENT - joins existing network
@@ -13,7 +19,7 @@
 #define WIFI_PSK              "wlan_key"
 
 /* Comment this for DHCP. However you'll need to obtain IP somehow. */
-#define STATIC_IP
+//#define STATIC_IP
 
 /* Static ip configuration */
 #ifdef STATIC_IP

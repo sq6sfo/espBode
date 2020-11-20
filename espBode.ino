@@ -1,7 +1,14 @@
 #include <ESP8266WiFi.h>
 #include "esp_network.h"
 #include "esp_config.h"
-#include "esp_fy6800.h"
+
+#if AWG == FY6800
+  #include "esp_fy6800.h"
+#elif AWG == FY6900
+  #include "esp_fy6900.h"
+#else
+  #error "Please select an AWG in esp_config.h"
+#endif
 
 WiFiServer rpc_server(RPC_PORT);
 WiFiServer lxi_server(LXI_PORT);
@@ -9,6 +16,8 @@ WiFiServer lxi_server(LXI_PORT);
 void setup() {
 
     Serial.begin(115200);
+
+    pinMode(LED_BUILTIN, OUTPUT);
 
     // We start by connecting to a WiFi network
     DEBUG("Connecting to ");
@@ -33,6 +42,7 @@ void setup() {
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
         DEBUG(".");
+        digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
     }
 
     DEBUG("WiFi connected");
@@ -73,7 +83,8 @@ void loop() {
             lxi_client.stop();
             DEBUG("RESTARTING");
             return;
+        }else{
+          digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
         }
-    }
+    }    
 }
-
