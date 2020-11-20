@@ -97,7 +97,7 @@ void setCh2Ampl(uint32_t ampl)
 /* Phase is in 0.1deg: 12.5deg = 125 */
 void setCh1Phase(uint32_t phase)
 {
-    char command[] = "WMA00.000\n";
+    char command[] = "WMP00.000\n";
     snprintf(command, 11, "WMP%02u.%01u\n", phase/1000, (phase%1000)/100);
     gDeviceState.ch1Phase = phase;
     fy6800_write(command, 10);
