@@ -2,6 +2,8 @@
 #include "esp_network.h"
 #include "esp_config.h"
 
+#include "ESPTelnet.h"
+
 #if AWG == FY6800
   #include "esp_fy6800.h"
 #elif AWG == FY6900
@@ -12,6 +14,7 @@
 
 WiFiServer rpc_server(RPC_PORT);
 WiFiServer lxi_server(LXI_PORT);
+ESPTelnet telnet;
 
 void setup() {
 
@@ -47,7 +50,9 @@ void setup() {
 
     DEBUG("WiFi connected");
     DEBUG("IP address: ");
-    DEBUG(WiFi.localIP());
+    DEBUG(WiFi.localIP().toString());
+
+    telnet.begin();
 
     rpc_server.begin();
     lxi_server.begin();
@@ -78,13 +83,15 @@ void loop() {
 
     while(1)
     {
+        telnet.loop();        
         if(0 != handlePacket(lxi_client))
         {
             lxi_client.stop();
             DEBUG("RESTARTING");
             return;
         }else{
+          // Lets give the user some feedback
           digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
         }
-    }    
+    }        
 }

@@ -1,6 +1,9 @@
 #ifndef _ESP_CONFIG_H_
 #define _ESP_CONFIG_H_
 
+#include "ESPTelnet.h"
+extern ESPTelnet telnet;
+
 #define FY6800 1
 #define FY6900 2
 
@@ -52,7 +55,7 @@
 #ifdef DEBUG_PRINTS
   #define DEBUG(TEXT)         Serial.println(TEXT);
 #else
-  #define DEBUG(TEXT)
+  #define DEBUG(TEXT)         telnet.println(TEXT);
 #endif
 
 #endif /* _ESP_CONFIG_H_ */
