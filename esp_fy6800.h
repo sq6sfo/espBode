@@ -1,3 +1,5 @@
+#if AWG == FY6800
+
 #ifndef _ESP_FY6800_H_
 #define _ESP_FY6800_H_
 
@@ -88,4 +90,6 @@ void setCh2Offset(int32_t offset);
 /* Can be used to set some default parameters */
 void initDevice(void);
 
-#endif _ESP_FY6800_H_
+#endif //_ESP_FY6800_H_
+
+#endif
